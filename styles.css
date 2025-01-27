@@ -1,0 +1,67 @@
+/* Importar Bootstrap */
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+#carrerasList li {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    margin: 5px auto;
+    border-radius: 5px;
+    font-weight: bold;
+    max-width: 400px;
+}
+
+#carreraSelect {
+    font-size: 18px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.table-responsive {
+    display: flex;
+    justify-content: center;
+}
+
+.table {
+    max-width: 80%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.thead-light th {
+    background-color: #007bff;  /* Azul */
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #6c757d;
+}
