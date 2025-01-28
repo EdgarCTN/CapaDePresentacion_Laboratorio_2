@@ -1,48 +1,47 @@
 const API_URL = "https://6be4fa5c-e767-4bc7-a33b-c270ddafb704-00-3kvcl176eb195.worf.replit.dev/";
+const PAGE_SIZE = 10; // Registros por página
 
-// Configuración para paginación
-const PAGE_SIZE_LIST = 10; // Registros por página en la lista de carreras
-const PAGE_SIZE_TABLE = 20; // Registros por página en la tabla de alumnos
-let currentListPage = 1;
-let currentTablePage = 1;
-
-// Listar número de alumnos por carrera con paginación
+// Paginación para carreras
 function listarCarreras(page = 1) {
-    fetch(`${API_URL}?endpoint=carreras&page=${page}&limit=${PAGE_SIZE_LIST}`)
+    fetch(`${API_URL}?endpoint=carreras`)
         .then(response => response.json())
         .then(data => {
+            const start = (page - 1) * PAGE_SIZE;
+            const end = start + PAGE_SIZE;
             const carrerasList = document.getElementById("carrerasList");
             const carreraSelect = document.getElementById("carreraSelect");
-            const paginationControls = document.getElementById("paginationControls");
 
-            // Actualizar la lista
-            carrerasList.innerHTML = data.items.map(carrera =>
+            // Mostrar solo las carreras de la página actual
+            const pageData = data.slice(start, end);
+            carrerasList.innerHTML = pageData.map(carrera =>
                 `<li>${carrera.nomCP}: ${carrera.numero_alumnos} alumnos</li>`
             ).join("");
 
-            // Actualizar el select (solo al cargar la primera página)
-            if (page === 1) {
-                carreraSelect.innerHTML += data.items.map(carrera =>
+            // Llenar el select (solo la primera vez)
+            if (carreraSelect.options.length === 1) {
+                carreraSelect.innerHTML += data.map(carrera =>
                     `<option value="${carrera.nomCP}">${carrera.nomCP}</option>`
                 ).join("");
             }
 
-            // Actualizar la paginación
-            renderPagination(paginationControls, data.totalPages, page, listarCarreras);
+            // Crear paginación
+            createPagination(data.length, page, listarCarreras, "carrerasPagination");
         })
         .catch(error => console.error("Error al listar carreras:", error));
 }
 
-// Filtrar alumnos por carrera seleccionada con paginación
+// Paginación para alumnos
 function filtrarAlumnos(carrera, page = 1) {
-    fetch(`${API_URL}?endpoint=alumnos&carrera=${encodeURIComponent(carrera)}&page=${page}&limit=${PAGE_SIZE_TABLE}`)
+    fetch(`${API_URL}?endpoint=alumnos&carrera=${encodeURIComponent(carrera)}`)
         .then(response => response.json())
         .then(data => {
+            const start = (page - 1) * PAGE_SIZE;
+            const end = start + PAGE_SIZE;
             const alumnosTable = document.getElementById("alumnosTable");
-            const tablePagination = document.getElementById("tablePagination");
 
-            // Actualizar la tabla
-            alumnosTable.innerHTML = data.items.map(alumno =>
+            // Mostrar solo los alumnos de la página actual
+            const pageData = data.slice(start, end);
+            alumnosTable.innerHTML = pageData.map(alumno =>
                 `<tr>
                     <td>${alumno.Código_alumno}</td>
                     <td>${alumno.AP}</td>
@@ -52,39 +51,31 @@ function filtrarAlumnos(carrera, page = 1) {
                 </tr>`
             ).join("");
 
-            // Actualizar la paginación
-            renderPagination(tablePagination, data.totalPages, page, (newPage) => filtrarAlumnos(carrera, newPage));
+            // Crear paginación
+            createPagination(data.length, page, (newPage) => filtrarAlumnos(carrera, newPage), "alumnosPagination");
         })
         .catch(error => console.error("Error al filtrar alumnos:", error));
 }
 
-// Renderizar controles de paginación
-function renderPagination(container, totalPages, currentPage, onPageChange) {
+// Crear paginación
+function createPagination(totalItems, currentPage, callback, containerId) {
+    const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+    const container = document.getElementById(containerId);
+
     container.innerHTML = "";
 
-    // Botón "Anterior"
-    const prevButton = document.createElement("button");
-    prevButton.textContent = "Anterior";
-    prevButton.disabled = currentPage === 1;
-    prevButton.addEventListener("click", () => onPageChange(currentPage - 1));
-    container.appendChild(prevButton);
-
-    // Botón "Siguiente"
-    const nextButton = document.createElement("button");
-    nextButton.textContent = "Siguiente";
-    nextButton.disabled = currentPage === totalPages;
-    nextButton.addEventListener("click", () => onPageChange(currentPage + 1));
-    container.appendChild(nextButton);
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement("button");
+        button.textContent = i;
+        button.className = i === currentPage ? "active" : "";
+        button.addEventListener("click", () => callback(i));
+        container.appendChild(button);
+    }
 }
 
-// Manejar el cambio de carrera
+// Eventos iniciales
 document.getElementById("carreraSelect").addEventListener("change", (e) => {
-    const carrera = e.target.value;
-    if (carrera) {
-        currentTablePage = 1; // Reiniciar la página de la tabla
-        filtrarAlumnos(carrera, currentTablePage);
-    }
+    if (e.target.value) filtrarAlumnos(e.target.value);
 });
 
-// Inicializar lista de carreras
-listarCarreras(currentListPage);
+listarCarreras();
