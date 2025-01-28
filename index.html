@@ -1,42 +1,29 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Alumnos</title>
+    <title>Carreras y Alumnos</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center mt-4">Gestión de Alumnos</h1>
-
-        <h2 class="text-center mt-4">Número de alumnos por carrera profesional</h2>
-        <ul id="carrerasList" class="list-unstyled text-center"></ul>
-
-        <h2 class="text-center mt-4">Filtrar alumnos por carrera</h2>
-        <div class="text-center">
-            <select id="carreraSelect" class="form-control mx-auto w-50">
-                <option value="">Selecciona una carrera</option>
-            </select>
-        </div>
-
-        <div class="table-responsive mt-4">
-            <table class="table table-bordered mx-auto text-center">
-                <thead class="thead-light">
-                    <tr class="bg-info text-white">
-                        <th>Código</th>
-                        <th>Apellido</th>
-                        <th>Nombre</th>
-                        <th>Edad</th>
-                        <th>Color Favorito</th>
-                    </tr>
-                </thead>
-                <tbody id="alumnosTable"></tbody>
-            </table>
-        </div>
-    </div>
-
+    <h1>Listado de Carreras y Alumnos</h1>
+    <ul id="carrerasList"></ul>
+    <select id="carreraSelect">
+        <option value="">Seleccione una carrera</option>
+    </select>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody id="alumnosTable"></tbody>
+    </table>
     <script src="scripts.js"></script>
 </body>
 </html>
