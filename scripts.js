@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = "https://replit.com/@edgarcarlosteje/logica-de-negocio#index.php";
+    const API_URL = "https://6be4fa5c-e767-4bc7-a33b-c270ddafb704-00-3kvcl176eb195.worf.replit.dev/";
     // Listar número de alumnos por carrera
     function listarCarreras() {
         fetch(`${API_URL}carreras.php`)
