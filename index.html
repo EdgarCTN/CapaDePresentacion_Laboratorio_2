@@ -7,23 +7,27 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Listado de Carreras y Alumnos</h1>
-    <ul id="carrerasList"></ul>
-    <select id="carreraSelect">
-        <option value="">Seleccione una carrera</option>
-    </select>
-    <table>
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Apellido</th>
-                <th>Nombre</th>
-                <th>Edad</th>
-                <th>Color</th>
-            </tr>
-        </thead>
-        <tbody id="alumnosTable"></tbody>
-    </table>
+    <div class="container">
+        <h1>Listado de Carreras y Alumnos</h1>
+        <div class="carreras-section">
+            <ul id="carrerasList" class="carreras-list"></ul>
+            <select id="carreraSelect" class="carrera-select">
+                <option value="">Seleccione una carrera</option>
+            </select>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Color</th>
+                </tr>
+            </thead>
+            <tbody id="alumnosTable"></tbody>
+        </table>
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
