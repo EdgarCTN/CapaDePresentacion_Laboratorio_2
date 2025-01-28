@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = "https://nombreusuario.repl.co/";
-
+    const API_URL = "https://replit.com/join/jaephxuljf-edgarcarlosteje";
     // Listar número de alumnos por carrera
     function listarCarreras() {
         fetch(`${API_URL}carreras.php`)
