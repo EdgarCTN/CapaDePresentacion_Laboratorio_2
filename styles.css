@@ -1,46 +1,44 @@
-/* Estilo de la tabla con colores */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #f9fbff; /* Fondo suave de la tabla */
+/* Estilos globales (sin cambios mayores) */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    overflow: hidden; /* Para redondear bordes de la tabla */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.table th, .table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+/* Estilos para la paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin: 20px 0;
 }
 
-.table th {
-    background-color: #0073e6; /* Azul fuerte para encabezados */
+.pagination button {
+    padding: 8px 12px;
+    background-color: #0073e6;
     color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.table tr:nth-child(even) {
-    background-color: #eaf3ff; /* Fondo azul claro para filas pares */
-}
-
-.table tr:nth-child(odd) {
-    background-color: #ffffff; /* Fondo blanco para filas impares */
-}
-
-.table tr:hover {
-    background-color: #d2e4ff; /* Azul más intenso al pasar el ratón */
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
 }
 
-.table td {
-    color: #555; /* Color de texto */
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
-/* Ajuste del texto para caber mejor */
-.table td, .table th {
-    word-wrap: break-word;
+.pagination button:hover:not(:disabled) {
+    background-color: #005bb5;
 }
