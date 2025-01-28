@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = "https://replit.com/@edgarcarlosteje/logica-de-negocio#index.php";
+    const API_URL = "https://nombreusuario.repl.co/";
 
     // Listar número de alumnos por carrera
     function listarCarreras() {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Filtrar alumnos por carrera seleccionada
     function filtrarAlumnos(carrera) {
-        fetch(`${API_URL}alumnos.php?carrera=${carrera}`)
+        fetch(`${API_URL}alumnos.php?carrera=${encodeURIComponent(carrera)}`)
             .then(response => response.json())
             .then(data => {
                 const alumnosTable = document.getElementById("alumnosTable");
