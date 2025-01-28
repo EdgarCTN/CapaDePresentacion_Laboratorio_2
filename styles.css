@@ -1,17 +1,91 @@
+/* Estilos globales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-h1 {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
     color: #333;
 }
-table {
+
+h1 {
+    text-align: center;
+    color: #0073e6;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Estilo de la lista y el select */
+.carreras-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.carreras-list {
+    list-style: none;
+    padding: 0;
+}
+
+.carreras-list li {
+    background-color: #0073e6;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.carrera-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Estilo de la tabla */
+.table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 12px;
     text-align: left;
+}
+
+.table th {
+    background-color: #0073e6;
+    color: #fff;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tr:hover {
+    background-color: #e1f0ff;
+}
+
+.table td {
+    color: #555;
+}
+
+/* Mejoras responsivas */
+@media (max-width: 768px) {
+    .carreras-section {
+        flex-direction: column;
+    }
 }
