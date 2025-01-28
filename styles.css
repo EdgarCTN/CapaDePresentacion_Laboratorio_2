@@ -4,26 +4,27 @@
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #f9fbff; /* Fondo suave de la tabla */
-    border-radius: 10px;
+    border-radius: 12px; /* Bordes más redondeados */
     overflow: hidden; /* Para redondear bordes de la tabla */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más suave */
 }
 
 .table th, .table td {
     border: 1px solid #ddd;
-    padding: 12px;
+    padding: 14px; /* Más espacio para mayor claridad */
     text-align: left;
+    font-size: 14px;
 }
 
 .table th {
-    background-color: #0073e6; /* Azul fuerte para encabezados */
+    background: linear-gradient(90deg, #0073e6, #005bb5); /* Gradiente para encabezados */
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 .table tr:nth-child(even) {
-    background-color: #eaf3ff; /* Fondo azul claro para filas pares */
+    background-color: #f0f7ff; /* Fondo azul claro para filas pares */
 }
 
 .table tr:nth-child(odd) {
@@ -31,16 +32,97 @@
 }
 
 .table tr:hover {
-    background-color: #d2e4ff; /* Azul más intenso al pasar el ratón */
+    background-color: #cce4ff; /* Azul más intenso al pasar el ratón */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .table td {
-    color: #555; /* Color de texto */
+    color: #333; /* Texto más oscuro para mayor contraste */
+    font-size: 13px;
 }
 
 /* Ajuste del texto para caber mejor */
 .table td, .table th {
     word-wrap: break-word;
+}
+
+/* Estilo de la lista de carreras */
+.carreras-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #f9fbff; /* Fondo suave */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.carreras-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.carreras-list li:last-child {
+    border-bottom: none; /* Sin borde en el último elemento */
+}
+
+.carreras-list li:hover {
+    background-color: #eaf3ff; /* Fondo azul claro al pasar el ratón */
+    color: #0073e6;
+    cursor: pointer;
+}
+
+/* Estilo de los botones de paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    border: 2px solid #0073e6;
+    background: #fff;
+    color: #0073e6;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background: #0073e6;
+    color: #fff;
+    transform: scale(1.1); /* Pequeño efecto de zoom */
+}
+
+.pagination button.active {
+    background: #005bb5;
+    color: #fff;
+    pointer-events: none;
+    border-color: #005bb5;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .pagination button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .carreras-list li {
+        font-size: 12px;
+    }
 }
