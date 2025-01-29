@@ -1,4 +1,3 @@
-
 const API_URL = "https://6be4fa5c-e767-4bc7-a33b-c270ddafb704-00-3kvcl176eb195.worf.replit.dev/";
 const PAGE_SIZE = 10; // Registros por página
 
@@ -80,4 +79,3 @@ document.getElementById("carreraSelect").addEventListener("change", (e) => {
 });
 
 listarCarreras();
-
