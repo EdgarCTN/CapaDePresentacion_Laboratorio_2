@@ -79,3 +79,4 @@ document.getElementById("carreraSelect").addEventListener("change", (e) => {
 });
 
 listarCarreras();
+
