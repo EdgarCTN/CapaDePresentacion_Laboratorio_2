@@ -9,27 +9,11 @@
 <body>
     <div class="container">
         <h1>Listado de Carreras y Alumnos</h1>
-
-        <!-- Barra de búsqueda -->
-        <div class="search-container">
-            <input
-                type="text"
-                id="searchCarreras"
-                placeholder="Buscar carreras..."
-                class="search-bar"
-            />
-        </div>
-
-        <!-- Sección de carreras -->
         <div class="carreras-section">
+            <input type="text" id="searchCarrera" class="search-input" placeholder="Buscar carrera...">
             <ul id="carrerasList" class="carreras-list"></ul>
             <div class="pagination" id="carrerasPagination"></div>
-            <select id="carreraSelect" class="carrera-select">
-                <option value="">Seleccione una carrera</option>
-            </select>
         </div>
-
-        <!-- Tabla de alumnos -->
         <table class="table">
             <thead>
                 <tr>
@@ -43,9 +27,6 @@
             <tbody id="alumnosTable"></tbody>
         </table>
         <div class="pagination" id="alumnosPagination"></div>
-
-        <!-- Indicador de carga -->
-        <div id="loadingIndicator" class="loading-indicator">Cargando...</div>
     </div>
     <script src="scripts.js"></script>
 </body>
