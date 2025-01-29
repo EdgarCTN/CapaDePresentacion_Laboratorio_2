@@ -3,7 +3,7 @@ const PAGE_SIZE = 10; // Registros por página
 
 // Paginación para carreras
 function listarCarreras(page = 1) {
-    fetch(${API_URL}?endpoint=carreras)
+    fetch(`${API_URL}?endpoint=carreras`)
         .then(response => response.json())
         .then(data => {
             const start = (page - 1) * PAGE_SIZE;
@@ -14,13 +14,13 @@ function listarCarreras(page = 1) {
             // Mostrar solo las carreras de la página actual
             const pageData = data.slice(start, end);
             carrerasList.innerHTML = pageData.map(carrera =>
-                <li>${carrera.nomCP}: ${carrera.numero_alumnos} alumnos</li>
+                `<li onclick="filtrarAlumnos('${carrera.nomCP}')">${carrera.nomCP}: ${carrera.numero_alumnos} alumnos</li>`
             ).join("");
 
             // Llenar el select (solo la primera vez)
             if (carreraSelect.options.length === 1) {
                 carreraSelect.innerHTML += data.map(carrera =>
-                    <option value="${carrera.nomCP}">${carrera.nomCP}</option>
+                    `<option value="${carrera.nomCP}">${carrera.nomCP}</option>`
                 ).join("");
             }
 
@@ -32,7 +32,7 @@ function listarCarreras(page = 1) {
 
 // Paginación para alumnos
 function filtrarAlumnos(carrera, page = 1) {
-    fetch(${API_URL}?endpoint=alumnos&carrera=${encodeURIComponent(carrera)})
+    fetch(`${API_URL}?endpoint=alumnos&carrera=${encodeURIComponent(carrera)}`)
         .then(response => response.json())
         .then(data => {
             const start = (page - 1) * PAGE_SIZE;
@@ -42,13 +42,13 @@ function filtrarAlumnos(carrera, page = 1) {
             // Mostrar solo los alumnos de la página actual
             const pageData = data.slice(start, end);
             alumnosTable.innerHTML = pageData.map(alumno =>
-                <tr>
+                `<tr>
                     <td>${alumno.Código_alumno}</td>
                     <td>${alumno.AP}</td>
                     <td>${alumno.Nom}</td>
                     <td>${alumno.edad}</td>
                     <td>${alumno.color}</td>
-                </tr>
+                </tr>`
             ).join("");
 
             // Crear paginación
@@ -57,19 +57,35 @@ function filtrarAlumnos(carrera, page = 1) {
         .catch(error => console.error("Error al filtrar alumnos:", error));
 }
 
-// Crear paginación
+// Crear paginación con botones prev/next
 function createPagination(totalItems, currentPage, callback, containerId) {
     const totalPages = Math.ceil(totalItems / PAGE_SIZE);
     const container = document.getElementById(containerId);
 
     container.innerHTML = "";
 
-    for (let i = 1; i <= totalPages; i++) {
-        const button = document.createElement("button");
-        button.textContent = i;
-        button.className = i === currentPage ? "active" : "";
-        button.addEventListener("click", () => callback(i));
-        container.appendChild(button);
+    if (totalPages > 1) {
+        if (currentPage > 1) {
+            const prevButton = document.createElement("button");
+            prevButton.textContent = "«";
+            prevButton.onclick = () => callback(currentPage - 1);
+            container.appendChild(prevButton);
+        }
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement("button");
+            button.textContent = i;
+            button.className = i === currentPage ? "active" : "";
+            button.onclick = () => callback(i);
+            container.appendChild(button);
+        }
+
+        if (currentPage < totalPages) {
+            const nextButton = document.createElement("button");
+            nextButton.textContent = "»";
+            nextButton.onclick = () => callback(currentPage + 1);
+            container.appendChild(nextButton);
+        }
     }
 }
 
