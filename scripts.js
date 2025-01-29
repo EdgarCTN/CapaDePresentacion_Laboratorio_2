@@ -61,10 +61,20 @@ function filtrarAlumnos(carrera, page = 1) {
 function createPagination(totalItems, currentPage, callback, containerId) {
     const totalPages = Math.ceil(totalItems / PAGE_SIZE);
     const container = document.getElementById(containerId);
+    const MAX_VISIBLE_PAGES = 5; // Número de botones visibles alrededor de la página actual
 
     container.innerHTML = "";
 
     if (totalPages > 1) {
+        // Botón para ir a la primera página
+        if (currentPage > 1) {
+            const firstButton = document.createElement("button");
+            firstButton.textContent = "««";
+            firstButton.onclick = () => callback(1);
+            container.appendChild(firstButton);
+        }
+
+        // Botón para página anterior
         if (currentPage > 1) {
             const prevButton = document.createElement("button");
             prevButton.textContent = "«";
@@ -72,7 +82,11 @@ function createPagination(totalItems, currentPage, callback, containerId) {
             container.appendChild(prevButton);
         }
 
-        for (let i = 1; i <= totalPages; i++) {
+        // Definir el rango de páginas a mostrar
+        let startPage = Math.max(1, currentPage - MAX_VISIBLE_PAGES);
+        let endPage = Math.min(totalPages, currentPage + MAX_VISIBLE_PAGES);
+
+        for (let i = startPage; i <= endPage; i++) {
             const button = document.createElement("button");
             button.textContent = i;
             button.className = i === currentPage ? "active" : "";
@@ -80,14 +94,24 @@ function createPagination(totalItems, currentPage, callback, containerId) {
             container.appendChild(button);
         }
 
+        // Botón para página siguiente
         if (currentPage < totalPages) {
             const nextButton = document.createElement("button");
             nextButton.textContent = "»";
             nextButton.onclick = () => callback(currentPage + 1);
             container.appendChild(nextButton);
         }
+
+        // Botón para ir a la última página
+        if (currentPage < totalPages) {
+            const lastButton = document.createElement("button");
+            lastButton.textContent = "»»";
+            lastButton.onclick = () => callback(totalPages);
+            container.appendChild(lastButton);
+        }
     }
 }
+
 
 // Eventos iniciales
 document.getElementById("carreraSelect").addEventListener("change", (e) => {
